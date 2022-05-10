@@ -23,7 +23,7 @@ let save = (repo) => {
   let newRepo = new Repo({
     name: repo.name,
     owner: repo.owner.login,
-    starred: repo.owner.starred_url,
+    starred: repo.stargazers_count,
     url: repo.html_url,
     forks: repo.forks_Count
   })
@@ -40,3 +40,4 @@ let save = (repo) => {
 //save() is used to save the document to the database. Using this function, new documents can be added to the database
 
 module.exports.save = save;
+module.exports.Repo = Repo; //export repo model
