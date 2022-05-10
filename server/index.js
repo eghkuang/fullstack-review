@@ -1,6 +1,8 @@
 const express = require('express');
 let app = express();
 
+var db = require('../database');
+
 app.use(express.static(__dirname + '/../client/dist'));
 
 app.post('/repos', function (req, res) {
