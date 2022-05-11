@@ -8,7 +8,7 @@ mongoose.connect('mongodb://localhost/fetcher',{ useNewUrlParser: true } ).then(
 let repoSchema = mongoose.Schema({
   // TODO: your schema here!
   name: String,
-  owner: { type: String, unique: true },
+  owner: {type: String},
   starred: String,
   url: { type: String, unique: true },
   forks: String
@@ -26,13 +26,13 @@ let save = (repo) => {
     starred: repo.stargazers_count,
     url: repo.html_url,
     forks: repo.forks_Count
-  })
-  .save()
-  .then((repo) => {
-    console.log('repo', repo)
-  })
-  .catch((err) => {
-    throw(err);
+  });
+  newRepo.save((err) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log('success');
+    }
   })
 };
 
@@ -41,3 +41,28 @@ let save = (repo) => {
 
 module.exports.save = save;
 module.exports.Repo = Repo; //export repo model
+
+
+
+
+
+//----------------SOLUTION---------------
+
+
+
+// const mongoose = require('mongoose');
+// mongoose.connect('mongodb://localhost/fetcher');
+
+// let repoSchema = mongoose.Schema({
+//   // TODO: your schema here!
+// });
+
+// let Repo = mongoose.model('Repo', repoSchema);
+
+// let save = (/* TODO */) => {
+//   // TODO: Your code here
+//   // This function should save a repo or repos to
+//   // the MongoDB
+// }
+
+// module.exports.save = save;

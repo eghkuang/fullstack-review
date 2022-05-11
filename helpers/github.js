@@ -15,7 +15,10 @@ let getReposByUsername = ( {username}, callback ) => {
     }
   };
 
-  axios.get(options.url, options.headers).then(res => callback(res.data)).catch(err => console.log(err));
+  axios.get(options.url, options.headers)
+    .then(res => callback(res.data))
+    .catch(err => console.log(err));
+
 }
 
 module.exports.getReposByUsername = getReposByUsername;
